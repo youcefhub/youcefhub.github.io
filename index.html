@@ -295,24 +295,48 @@
       });
     })();
 
-    // Language toggle: elements have data-en / data-fr
-    const btnEn = document.getElementById('btn-en');
-    const btnFr = document.getElementById('btn-fr');
-    function setLang(lang){
-      localStorage.setItem('site-lang', lang);
-      document.querySelectorAll('[data-en]').forEach(el=>el.style.display = (lang==='en') ? '' : 'none');
-      document.querySelectorAll('[data-fr]').forEach(el=>el.style.display = (lang==='fr') ? '' : 'none');
-      // style active
-      if(lang==='en'){ btnEn.classList.remove('secondary'); btnEn.classList.add('lang-btn'); btnFr.classList.add('secondary'); btnFr.classList.remove('lang-btn'); }
-      else{ btnFr.classList.remove('secondary'); btnFr.classList.add('lang-btn'); btnEn.classList.add('secondary'); btnEn.classList.remove('lang-btn'); }
-    }
-    btnEn.addEventListener('click',()=>setLang('en'));
-    btnFr.addEventListener('click',()=>setLang('fr'));
-    const saved = localStorage.getItem('site-lang');
-    if(saved && saved.includes('fr')) setLang('fr'); else setLang('en');
+    <script>
+// --- Language toggle ---
+const btnEn = document.getElementById('btn-en');
+const btnFr = document.getElementById('btn-fr');
 
-    // Update year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+function setLang(lang) {
+  if (!btnEn || !btnFr) return;
+
+  localStorage.setItem('site-lang', lang);
+
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.style.display = (lang === 'en') ? '' : 'none';
+  });
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    el.style.display = (lang === 'fr') ? '' : 'none';
+  });
+
+  if (lang === 'en') {
+    btnEn.classList.add('lang-btn');
+    btnEn.classList.remove('secondary');
+    btnFr.classList.add('secondary');
+    btnFr.classList.remove('lang-btn');
+  } else {
+    btnFr.classList.add('lang-btn');
+    btnFr.classList.remove('secondary');
+    btnEn.classList.add('secondary');
+    btnEn.classList.remove('lang-btn');
+  }
+}
+
+if (btnEn && !btnEn.dataset.bound) {
+  btnEn.addEventListener('click', () => setLang('en'));
+  btnEn.dataset.bound = true;
+}
+if (btnFr && !btnFr.dataset.bound) {
+  btnFr.addEventListener('click', () => setLang('fr'));
+  btnFr.dataset.bound = true;
+}
+
+const saved = localStorage.getItem('site-lang');
+if (saved === 'fr') setLang('fr');
+else setLang('en');
+</script>
 </body>
 </html>
