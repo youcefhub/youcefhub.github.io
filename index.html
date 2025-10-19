@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Youcef Djilani – Embedded Systems Engineer</title>
+  <meta name="description" content="Portfolio – Youcef Djilani, Embedded Systems Engineer">
+  <style>
+    /* Palette: bleu pétrole + gris clair */
+    :root{--bg:#f5f7fb;--card:#ffffff;--muted:#6b7280;--accent:#08334a;--accent-2:#0f5b7a;--radius:12px}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;line-height:1.5;margin:0;background:var(--bg);color:#071826}
+
+    /* Container */
+    .container{max-width:1100px;margin:64px auto;padding:20px}
+
+    /* NAVBAR */
+    header{position:fixed;left:0;right:0;top:12px;z-index:60;display:flex;justify-content:center}
+    .nav-wrap{width:100%;max-width:1100px;background:rgba(255,255,255,0.75);backdrop-filter:blur(6px);border-radius:14px;padding:10px 16px;box-shadow:0 8px 22px rgba(8,19,30,0.06);transition:transform 300ms ease,opacity 300ms ease}
+    .nav-hidden{transform:translateY(-110%);opacity:0}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    .brand h1{font-size:16px;margin:0}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+    nav{display:flex;gap:8px;align-items:center}
+    .nav a{padding:8px 12px;border-radius:10px;text-decoration:none;color:inherit;font-weight:600}
+    .nav a:hover{background:#eef6fb}
+
+    /* Language toggle (more visible) */
+    .lang-toggle{display:flex;align-items:center;gap:8px}
+    .lang-btn{background:var(--accent);color:#fff;border:none;padding:8px;border-radius:10px;cursor:pointer;font-weight:700}
+    .lang-btn.secondary{background:transparent;color:var(--accent);border:1px solid #e6eef5}
+
+    /* Main layout */
+    main{margin-top:110px;display:grid;grid-template-columns:1fr;gap:18px;padding-bottom:40px}
+    .card{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(12,15,25,0.04)}
+
+    /* HERO */
+    .hero{display:flex;gap:16px;align-items:center}
+    .hero-left{flex:1}
+    .hero-right{width:220px}
+    .profile-pic{width:160px;height:160px;border-radius:999px;object-fit:cover;border:6px solid #fff;box-shadow:0 8px 20px rgba(8,19,30,0.08)}
+    .intro{font-size:20px;margin:0 0 8px}
+    .muted{color:var(--muted)}
+    .cta{display:flex;gap:10px;margin-top:12px}
+    .btn{background:var(--card);border:1px solid #e6eef5;padding:8px 12px;border-radius:10px;cursor:pointer}
+    .primary{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer}
+
+    /* Grid sections */
+    .grid-2{display:grid;grid-template-columns:1fr 380px;gap:18px}
+    .skills-list{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:8px 0;list-style:none}
+    .skills-list li{background:#eef6fb;padding:6px 10px;border-radius:999px;font-size:13px}
+
+    /* Projects */
+    .projects .project{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:start;padding:12px;border-radius:10px;border:1px solid #eef4f8;margin-bottom:12px}
+    .project img{width:120px;height:80px;object-fit:cover;border-radius:8px}
+    .project small{color:var(--muted);display:block;margin-top:6px}
+
+    /* CV section */
+    .cv-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .download{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none}
+
+    /* Footer */
+    footer{text-align:center;color:var(--muted);font-size:13px;margin-top:18px}
+
+    /* Responsive */
+    @media (max-width:940px){.grid-2{grid-template-columns:1fr}.hero{flex-direction:column}.hero-right{width:100%}.profile-pic{width:120px;height:120px}}
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header>
+    <div class="nav-wrap" id="navWrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="logo">YD</div>
+          <div>
+            <h1>Youcef Djilani</h1>
+            <p class="muted" data-en>Embedded Systems Engineer</p>
+            <p class="muted" data-fr style="display:none">Ingénieur en systèmes embarqués</p>
+          </div>
+        </div>
+        <nav>
+          <a href="#home" data-en>Home</a>
+          <a href="#home" data-fr style="display:none">Accueil</a>
+          <a href="#about" data-en>About</a>
+          <a href="#about" data-fr style="display:none">À propos</a>
+          <a href="#projects" data-en>Projects</a>
+          <a href="#projects" data-fr style="display:none">Projets</a>
+          <a href="#cv" data-en>CV</a>
+          <a href="#cv" data-fr style="display:none">CV</a>
+          <a href="#contact" data-en>Contact</a>
+          <a href="#contact" data-fr style="display:none">Contact</a>
+
+          <div class="lang-toggle" style="margin-left:8px">
+            <button id="btn-en" class="lang-btn">EN</button>
+            <button id="btn-fr" class="lang-btn secondary">FR</button>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <main>
+      <!-- HERO -->
+      <section class="card hero" id="home">
+        <div class="hero-left">
+          <p class="intro" data-en>I'm an embedded systems engineer passionate about electronics.</p>
+          <p class="intro" data-fr style="display:none">Je suis un ingénieur en systèmes embarqués passionné par l'électronique.</p>
+
+          <p class="muted" data-en>Designing small autonomous systems — drones, control algorithms, and embedded firmware.</p>
+          <p class="muted" data-fr style="display:none">Conception de petits systèmes autonomes — drones, algorithmes de commande et firmware embarqué.</p>
+
+          <div class="cta">
+            <a class="btn" href="#projects" data-en>See projects</a>
+            <a class="btn" href="#projects" data-fr style="display:none">Voir les projets</a>
+            <a class="primary" href="#contact" data-en>Contact me</a>
+            <a class="primary" href="#contact" data-fr style="display:none">Me contacter</a>
+          </div>
+
+          <div style="margin-top:14px">
+            <p class="muted" data-en>Quick facts</p>
+            <p class="muted" data-fr style="display:none">Faits rapides</p>
+            <ul class="muted" style="padding-left:18px;margin:6px 0 0">
+              <li data-en>Master in Embedded Systems</li>
+              <li data-fr style="display:none">Master en systèmes embarqués</li>
+              <li>ESP32 • C/C++ • Arduino</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="hero-right card" style="text-align:center">
+          <img src="images/profile.jpg" alt="Youcef Djilani" class="profile-pic" id="profilePic">
+          <div style="margin-top:10px">
+            <strong>Contact</strong>
+            <div style="margin-top:6px">
+              <div class="muted">Email: <a href="mailto:youcef@example.com">youcefdjilani4@gmail.com</a></div>
+              <div class="muted">LinkedIn: <a href="https://www.linkedin.com/in/youcef-djilani-6822a025b" target="_blank">youcef-djilani</a></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="card" id="about">
+        <h2 data-en>About</h2>
+        <h2 data-fr style="display:none">À propos</h2>
+        <p data-en>Practical experience in embedded firmware, sensor integration and control systems. I enjoy building hardware-software prototypes, testing algorithms on microcontrollers and documenting projects on GitHub.</p>
+        <p data-fr style="display:none">Expérience pratique en firmware embarqué, intégration de capteurs et systèmes de contrôle. J'aime construire des prototypes hardware-software, tester des algorithmes sur microcontrôleurs et documenter mes projets sur GitHub.</p>
+      </section>
+
+      <!-- MAIN GRID: SKILLS + PROJECTS -->
+      <div class="grid-2">
+        <section class="card" id="skills">
+          <h3 data-en>Skills</h3>
+          <h3 data-fr style="display:none">Compétences</h3>
+
+          <ul class="skills-list">
+            <li>C / C++</li>
+            <li>Python</li>
+            <li>ESP32 / Arduino</li>
+            <li>Embedded Linux</li>
+            <li>PID & Control</li>
+            <li>Sensor Fusion & IMU</li>
+            <li>Git / GitHub</li>
+          </ul>
+
+          <p class="muted" data-en>Languages: French, English.</p>
+          <p class="muted" data-fr style="display:none">Langues : Français, Anglais.</p>
+        </section>
+
+        <aside class="card projects" id="projects">
+          <h3 data-en>Projects</h3>
+          <h3 data-fr style="display:none">Projets</h3>
+
+          <!-- Project 1: Drone -->
+          <div class="project">
+            <img src="images/drone-thumb.jpg" alt="Drone project">
+            <div>
+              <strong>Autonomous obstacle-avoiding drone (ESP32)</strong>
+              <p class="muted" data-en>Prototype drone using ESP32, IMU, distance sensors and PID control. Implemented obstacle detection and stabilization; firmware communicates with a mobile app for telemetry.</p>
+              <p class="muted" data-fr style="display:none">Prototype de drone utilisant ESP32, IMU, capteurs de distance et contrôle PID. Détection d'obstacles et stabilisation ; firmware communique avec une application mobile pour la télémétrie.</p>
+              <small class="muted">Scope: prototype, sensor integration, PID tuning, Blynk control.</small>
+              <div style="margin-top:8px">
+                <a href="https://github.com/youcefhub" target="_blank" class="btn">View on GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Health monitor -->
+          <div class="project">
+            <img src="images/health-thumb.jpg" alt="Health monitor project">
+            <div>
+              <strong>Health monitoring system (COVID-19)</strong>
+              <p class="muted" data-en>Device for monitoring temperature, blood oxygen (SpO2) and detecting lice presence during the pandemic. Low-power microcontroller with sensor logging and remote alerts.</p>
+              <p class="muted" data-fr style="display:none">Dispositif de suivi de la température, du taux d'oxygène (SpO2) et détection de poux pendant la pandémie. Microcontrôleur basse consommation avec enregistrement des capteurs et alertes à distance.</p>
+              <small class="muted">Scope: sensors (temp, SpO2), data logging, alerting.</small>
+              <div style="margin-top:8px">
+                <a href="https://github.com/youcefhub" target="_blank" class="btn">View on GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Mini game -->
+          <div class="project">
+            <img src="images/game-thumb.jpg" alt="Mini game">
+            <div>
+              <strong>ShootOnNetanyahu — Mini web game</strong>
+              <p class="muted" data-en>Small web game developed as a fun side project. Browser-playable and lightweight. (Code available on GitHub.)</p>
+              <p class="muted" data-fr style="display:none">Petit jeu web développé en side project pour se détendre. Jouable dans le navigateur et léger. (Code disponible sur GitHub.)</p>
+              <small class="muted">Scope: HTML/CSS/JS game, simple mechanics.</small>
+              <div style="margin-top:8px">
+                <a href="https://github.com/youcefhub" target="_blank" class="btn">View on GitHub</a>
+              </div>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+
+      <!-- CV / Resume -->
+      <section class="card" id="cv">
+        <h3 data-en>Curriculum Vitae</h3>
+        <h3 data-fr style="display:none">Curriculum Vitae</h3>
+        <div class="cv-row">
+          <div style="flex:1">
+            <p data-en>Download a concise resume (education, experience, skills). The PDF will be available in the repository as <code>cv-youcef.pdf</code>.</p>
+            <p data-fr style="display:none">Téléchargez un CV concis (formation, expérience, compétences). Le PDF sera disponible dans le dépôt sous le nom <code>cv-youcef.pdf</code>.</p>
+          </div>
+          <div>
+            <a href="/cv-youcef.pdf" class="download" download>Download CV</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="card" id="contact">
+        <h3 data-en>Contact</h3>
+        <h3 data-fr style="display:none">Contact</h3>
+        <p class="muted" data-en>Send me a short message — I usually reply within a few days.</p>
+        <p class="muted" data-fr style="display:none">Envoyez-moi un court message — je réponds généralement sous quelques jours.</p>
+
+        <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST">
+          <label for="name" data-en>Your name</label>
+          <label for="name" data-fr style="display:none">Votre nom</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email" data-en>Your email</label>
+          <label for="email" data-fr style="display:none">Votre email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="message" data-en>Message</label>
+          <label for="message" data-fr style="display:none">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+
+          <input type="hidden" name="_subject" value="New message from portfolio">
+
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <button type="submit" class="primary">Send</button>
+            <a class="btn" href="mailto:youcef@example.com" data-en>Open email</a>
+            <a class="btn" href="mailto:youcef@example.com" data-fr style="display:none">Ouvrir mail</a>
+            <a class="btn" href="https://www.linkedin.com/in/youcef-djilani-6822a025b" target="_blank">LinkedIn</a>
+          </div>
+        </form>
+      </section>
+
+      <footer class="muted">© <span id="year"></span> Youcef Djilani</footer>
+    </main>
+  </div>
+
+  <script>
+    // NAVBAR dynamic show/hide on scroll
+    (function(){
+      const navWrap = document.getElementById('navWrap');
+      let lastScroll = window.scrollY;
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const current = window.scrollY;
+            if (current > lastScroll && current > 120) {
+              // scrolling down
+              navWrap.classList.add('nav-hidden');
+            } else {
+              // scrolling up
+              navWrap.classList.remove('nav-hidden');
+            }
+            lastScroll = current <= 0 ? 0 : current;
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    })();
+
+    // Language toggle: elements have data-en / data-fr
+    const btnEn = document.getElementById('btn-en');
+    const btnFr = document.getElementById('btn-fr');
+    function setLang(lang){
+      localStorage.setItem('site-lang', lang);
+      document.querySelectorAll('[data-en]').forEach(el=>el.style.display = (lang==='en') ? '' : 'none');
+      document.querySelectorAll('[data-fr]').forEach(el=>el.style.display = (lang==='fr') ? '' : 'none');
+      // style active
+      if(lang==='en'){ btnEn.classList.remove('secondary'); btnEn.classList.add('lang-btn'); btnFr.classList.add('secondary'); btnFr.classList.remove('lang-btn'); }
+      else{ btnFr.classList.remove('secondary'); btnFr.classList.add('lang-btn'); btnEn.classList.add('secondary'); btnEn.classList.remove('lang-btn'); }
+    }
+    btnEn.addEventListener('click',()=>setLang('en'));
+    btnFr.addEventListener('click',()=>setLang('fr'));
+    const saved = localStorage.getItem('site-lang');
+    if(saved && saved.includes('fr')) setLang('fr'); else setLang('en');
+
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
